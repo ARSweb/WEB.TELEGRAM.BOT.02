@@ -1,0 +1,212 @@
+
+
+.MFFB{
+    width: 260px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+.MFMT{
+    font-size: 25px;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: #0E4A67;
+    margin-top: 30px;
+    text-align: center;
+}
+.MFF{
+    width: 238px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.MFL{
+    width: 100%;
+    min-height: 75px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.MFLT{
+    font-size: 11px;
+    font-weight: 700;
+    color: #207198;
+    line-height: 18px;
+    font-family: sans-serif;
+}
+.MFFI{
+    width: calc(100%-16px);
+    height: 25px;
+    border: 2px solid #6fcf97;
+    outline: none;
+    border-radius: 6px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    
+}
+.MFFIA{
+    max-width: calc(100%-16px);
+    width: calc(100%-16px);
+    height: 35px;
+    border: 2px solid #6fcf97;
+    outline: none;
+    border-radius: 6px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+.MFFIR{
+    width: calc(100%-16px);
+    height: 25px;
+    border: 2px solid #ee5757;
+    outline: none;
+    border-radius: 6px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+.MFFIRA{
+    max-width: calc(100%-16px);
+    width: calc(100%-16px);
+    height: 35px;
+    border: 2px solid #ee5757;
+    outline: none;
+    border-radius: 6px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+.errorText{
+    font-size: 10px;
+    font-weight: normal;
+    font-family: sans-serif;
+    color: #ee5757;
+    margin-top: 2px;
+}
+.MFFF{
+    display: none;
+}
+.MFLF{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;  
+    position: relative;  
+}
+.errorTextF{
+    position: absolute;
+    bottom: 0;
+    font-size: 10px;
+    font-weight: normal;
+    font-family: sans-serif;
+    color: #ee5757;
+}
+.MFLTF{
+    width: auto;
+    height: 20px;
+    padding: 5px;
+    border-radius: 6px;
+    border: 2px solid #6fcf97;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 700;
+    color: #207198;
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+}
+.MFLTFR{
+    width: auto;
+    height: 20px;
+    padding: 5px;
+    border-radius: 6px;
+    border: 2px solid #ee5757;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 700;
+    color: #207198;
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+}
+.MFLI{
+    width: 52px;
+    height: 69px;
+    border-radius: 8px;
+    filter: drop-shadow(0 0 5px black);
+    object-fit: cover;
+}
+.MFQT{
+    font-size: 15px;
+    font-weight: 600;
+    font-family: sans-serif;
+    color: #0E4A67;
+    text-align: left;
+    align-self: start;
+}
+.MFQD{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+.MFQRB{
+    width: 100%;
+    height: 30px;
+    background: #ee5757;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: sans-serif;
+    color: #fff;
+    border: none;
+}
+.MFQQ{
+    width: 100%;
+    height: 30px;
+    background: #6fcf97;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: sans-serif;
+    color: #fff;
+    border: none;
+    margin-top: 15px;
+}
+.MFFIQ{
+    width: 93%;
+    height: 25px;
+    border: 2px solid #6fcf97;
+    outline: none;
+    border-radius: 6px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+.MFFNB{
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    background: linear-gradient( to right bottom, #fe904b, #fb724c);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    font-family: sans-serif;
+    border: none;
+    margin-top: 15px;
+}

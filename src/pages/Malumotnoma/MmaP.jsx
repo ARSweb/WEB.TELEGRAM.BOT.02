@@ -63,25 +63,38 @@ const {send} = useAxios()
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     const tg = window.Telegram?.WebApp;
-    if(!tg) return;
-
-    setTelegram(true)
-    tg.ready()
-    tg.MainButton.setText("📤 Telegramga yuborish")
-    tg.MainButton.show()
-    const handleClick = ()=>{
+  
+    alert("Telegram mavjudmi? " + Boolean(tg));
+  
+    if (!tg) return;
+  
+    alert("Platforma: " + tg.platform);
+    alert("InitData bor-mi: " + Boolean(tg.initData));
+  
+    tg.ready();
+    tg.expand();
+  
+    tg.MainButton.setText("📤 Telegramga yuborish");
+    tg.MainButton.enable();
+    tg.MainButton.show();
+  
+    alert("MainButton show chaqirildi");
+  
+    const handleClick = () => {
+      alert("MainButton bosildi");
       generateMma();
     };
-    tg.MainButton.onClick(handleClick)
-
+  
+    tg.MainButton.onClick(handleClick);
+  
     return () => {
       tg.MainButton.offClick(handleClick);
       tg.MainButton.hide();
     };
-    
-  }, [])
+  }, []);
+  
   return (
     <div className="preview-wrap">
        {/* Eslatma */}

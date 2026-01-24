@@ -80,7 +80,7 @@ const {send} = useAxios()
       tg.MainButton.hide();
     };
     
-  }, [])
+  }, [FIO])
   return (
     <div className="preview-wrap">
        {/* Eslatma */}

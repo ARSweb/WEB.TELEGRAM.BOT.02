@@ -71,9 +71,10 @@ const {send} = useAxios()
     tg.ready()
     tg.MainButton.setText("📤 Telegramga yuborish")
     tg.MainButton.show()
-    tg.MainButton.onClick(()=>{
+    const handleClick = ()=>{
       generateMma();
-    })
+    };
+    tg.MainButton.onClick(handleClick)
 
     return () => {
       tg.MainButton.offClick(handleClick);

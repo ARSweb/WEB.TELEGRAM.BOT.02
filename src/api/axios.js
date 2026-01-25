@@ -1,5 +1,5 @@
 import axios from "axios";
 const api = axios.create({
-    baseURL: "http://localhost:5000"
+    baseURL: "https://lailah-pseudophilosophical-cloddishly.ngrok-free.dev "
 })
 export default api

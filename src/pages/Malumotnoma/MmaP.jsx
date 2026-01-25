@@ -33,12 +33,16 @@ const generateMma = async () => {
     const tg = window.Telegram.WebApp;
     const chatId = tg?.initDataUnsafe?.user?.id;
 
+    console.log("CHAT ID:", chatId);
+
     if (!chatId) {
-      alert("❌ Bu sahifa Telegram orqali ochilishi shart");
+      alert("Telegram orqali ochilmadi");
       return;
     }
 
-    await send("mma", {
+    console.log("➡️ Backendga yuborilmoqda...");
+
+    const res = await send("mma", {
       chatId,
       FIO,
       Rasm,
@@ -59,14 +63,17 @@ const generateMma = async () => {
       Family,
     });
 
-    tg.showAlert("✅ Hujjat Telegramga muvaffaqiyatli yuborildi!");
+    console.log("⬅️ Backend javobi:", res);
+
+    tg.showAlert("✅ Hujjat Telegramga yuborildi!");
   } catch (err) {
-    console.error(err);
+    console.error("❌ Frontend error:", err);
     window.Telegram?.WebApp?.showAlert(
       "❌ Hujjatni yuborishda xatolik yuz berdi"
     );
   }
 };
+
 
 
 

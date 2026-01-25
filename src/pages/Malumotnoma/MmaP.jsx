@@ -29,37 +29,45 @@ const MmaP = () => {
 const {send} = useAxios()
 
 const generateMma = async () => {
-  const tg = window.Telegram.WebApp;
-  const chatId = tg?.initDataUnsafe?.user?.id;
+  try {
+    const tg = window.Telegram.WebApp;
+    const chatId = tg?.initDataUnsafe?.user?.id;
 
-  if (!chatId) {
-    alert("Bu sahifa Telegram orqali ochilishi shart");
-    return;
+    if (!chatId) {
+      alert("❌ Bu sahifa Telegram orqali ochilishi shart");
+      return;
+    }
+
+    await send("mma", {
+      chatId,
+      FIO,
+      Rasm,
+      Bosh_S,
+      Fakultet,
+      Yonalish,
+      Guruh,
+      Tug_Y,
+      Tug_T,
+      Toliq_M,
+      Millat,
+      Passport_S,
+      Passport_I,
+      Passport_D,
+      Tel_M,
+      Tel_P,
+      Tillar,
+      Family,
+    });
+
+    tg.showAlert("✅ Hujjat Telegramga muvaffaqiyatli yuborildi!");
+  } catch (err) {
+    console.error(err);
+    window.Telegram?.WebApp?.showAlert(
+      "❌ Hujjatni yuborishda xatolik yuz berdi"
+    );
   }
-
-  await send("mma", {
-    chatId,
-    FIO,
-    Rasm,
-    Bosh_S,
-    Fakultet,
-    Yonalish,
-    Guruh,
-    Tug_Y,
-    Tug_T,
-    Toliq_M,
-    Millat,
-    Passport_S,
-    Passport_I,
-    Passport_D,
-    Tel_M,
-    Tel_P,
-    Tillar,
-    Family,
-  });
-
-  tg.showAlert("📄 Hujjat Telegramga yuborildi!");
 };
+
 
 
 useEffect(() => {

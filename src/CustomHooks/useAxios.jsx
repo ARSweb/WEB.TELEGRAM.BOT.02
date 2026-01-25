@@ -9,9 +9,14 @@ export function useAxios() {
       else formData.append(k, v);
     });
 
-    await api.post(`/${address}`, formData);
+    const res = await api.post(`/${address}`, formData);
+
+    if (!res.data?.ok) {
+      throw new Error("Backend error");
+    }
+
+    return res.data;
   };
 
   return { send };
 }
-

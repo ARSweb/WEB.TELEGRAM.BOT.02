@@ -69,7 +69,7 @@ const generateMma = async () => {
   } catch (err) {
     console.error("❌ Frontend error:", err);
     window.Telegram?.WebApp?.showAlert(
-      "❌ Hujjatni yuborishda xatolik yuz berdi", err
+      "❌ Hujjatni yuborishda xatolik yuz berdi"
     );
   }
 };
@@ -144,7 +144,7 @@ useEffect(() => {
         </details>
       ))}
       <button className="MPEB" onClick={() => Navigator("/mmaf")}>O'zgartirish</button>
-      <button className="MPGB"  onClick={generateMma}>📤 Hujjatni yuborish</button>
+      <button className="MPGB"  onClick={() => Navigator("/")}>📤 Bosh sahifaga qaytish</button>
     </div>
   )
 }

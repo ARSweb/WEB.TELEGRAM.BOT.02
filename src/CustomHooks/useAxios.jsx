@@ -4,20 +4,14 @@ export function useAxios() {
   const send = async (address, dataObj) => {
     const formData = new FormData();
 
-    Object.entries(dataObj).forEach(([key, value]) => {
-      if (Array.isArray(value)) {
-        formData.append(key, JSON.stringify(value));
-      } else {
-        formData.append(key, value);
-      }
+    Object.entries(dataObj).forEach(([k, v]) => {
+      if (Array.isArray(v)) formData.append(k, JSON.stringify(v));
+      else formData.append(k, v);
     });
 
-    const res = await api.post(`/${address}`, formData, {
-      responseType: "blob",
-    });
-
-    return res.data;
+    await api.post(`/${address}`, formData);
   };
 
   return { send };
 }
+

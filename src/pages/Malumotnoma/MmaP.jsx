@@ -28,73 +28,55 @@ const MmaP = () => {
 } = useContext(MmaDContext)
 const {send} = useAxios()
 
-  const generateMma = async ()=>{
-    try{
-      const blob = await send("mma", {
-        FIO, 
-        Rasm, 
-        Bosh_S,
-        Fakultet, 
-        Yonalish, 
-        Guruh, 
-        Tug_Y, 
-        Tug_T, 
-        Toliq_M, 
-        Millat, 
-        Passport_S, 
-        Passport_I, 
-        Passport_D, 
-        Tel_M, 
-        Tel_P, 
-        Tillar, 
-        Family
-      }     
-         )
-        if(!Telegram){
-          const url = window.URL.createObjectURL(blob);  
-          const a = document.createElement("a");
-          a.href = url;
-          a.download = "malumotnoma.docx";
-          a.click();
-          window.URL.revokeObjectURL(url)
-        }
-    }catch(err){
-      console.log("hato generateMma da", err);      
-    }
+const generateMma = async () => {
+  const tg = window.Telegram.WebApp;
+  const chatId = tg?.initDataUnsafe?.user?.id;
+
+  if (!chatId) {
+    alert("Bu sahifa Telegram orqali ochilishi shart");
+    return;
   }
 
-  useEffect(() => {
-    const tg = window.Telegram?.WebApp;
-    if(tg) setTelegram(true);
-  
-    alert("Telegram mavjudmi? " + Boolean(tg));
-  
-    if (!tg) return;
-  
-    alert("Platforma: " + tg.platform);
-    alert("InitData bor-mi: " + Boolean(tg.initData));
-  
-    tg.ready();
-    tg.expand();
-  
-    tg.MainButton.setText("📤 Telegramga yuborish");
-    tg.MainButton.enable();
-    tg.MainButton.show();
-  
-    alert("MainButton show chaqirildi");
-  
-    const handleClick = () => {
-      alert("MainButton bosildi");
-      generateMma();
-    };
-  
-    tg.MainButton.onClick(handleClick);
-  
-    return () => {
-      tg.MainButton.offClick(handleClick);
-      tg.MainButton.hide();
-    };
-  }, []);
+  await send("mma", {
+    chatId,
+    FIO,
+    Rasm,
+    Bosh_S,
+    Fakultet,
+    Yonalish,
+    Guruh,
+    Tug_Y,
+    Tug_T,
+    Toliq_M,
+    Millat,
+    Passport_S,
+    Passport_I,
+    Passport_D,
+    Tel_M,
+    Tel_P,
+    Tillar,
+    Family,
+  });
+
+  tg.showAlert("📄 Hujjat Telegramga yuborildi!");
+};
+
+
+useEffect(() => {
+  const tg = window.Telegram?.WebApp;
+  if (!tg) return;
+
+  tg.ready();
+  tg.expand();
+
+  tg.MainButton.setText("📤 Hujjatni yuborish");
+  tg.MainButton.show();
+
+  tg.MainButton.onClick(generateMma);
+
+  return () => tg.MainButton.offClick(generateMma);
+}, []);
+
   
   return (
     <div className="preview-wrap">
@@ -147,7 +129,7 @@ const {send} = useAxios()
         </details>
       ))}
       <button className="MPEB" onClick={() => Navigator("/mmaf")}>O'zgartirish</button>
-      {!Telegram && <button className="MPGB"  onClick={generateMma}>Malumotnomani yuklab olish </button>}
+      <button className="MPGB"  onClick={generateMma}>📤 Hujjatni yuborish</button>
     </div>
   )
 }

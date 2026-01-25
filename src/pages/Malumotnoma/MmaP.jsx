@@ -65,6 +65,7 @@ const {send} = useAxios()
 
   useEffect(() => {
     const tg = window.Telegram?.WebApp;
+    if(tg) setTelegram(true);
   
     alert("Telegram mavjudmi? " + Boolean(tg));
   

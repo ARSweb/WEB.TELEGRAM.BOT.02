@@ -69,7 +69,7 @@ const generateMma = async () => {
   } catch (err) {
     console.error("❌ Frontend error:", err);
     window.Telegram?.WebApp?.showAlert(
-      "❌ Hujjatni yuborishda xatolik yuz berdi"
+      "❌ Hujjatni yuborishda xatolik yuz berdi", err
     );
   }
 };

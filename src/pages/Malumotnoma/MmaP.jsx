@@ -5,7 +5,8 @@ import { useAxios } from "../../CustomHooks/useAxios"
 import "./MmaP.css"
 
 const MmaP = () => {
-  const [Telegram, setTelegram] = useState(false)
+  const [sending, setSending] = useState(false);
+
   const Navigator = useNavigate()
   const {
     FIO, 
@@ -29,20 +30,23 @@ const MmaP = () => {
 const {send} = useAxios()
 
 const generateMma = async () => {
+  const tg = window.Telegram.WebApp;
+
+  if (sending) return;
+
   try {
-    const tg = window.Telegram.WebApp;
+    setSending(true);
+
+    tg.MainButton.setText("⏳ Yuborilmoqda...");
+    tg.MainButton.disable();
+
     const chatId = tg?.initDataUnsafe?.user?.id;
-
-    console.log("CHAT ID:", chatId);
-
     if (!chatId) {
-      alert("Telegram orqali ochilmadi");
-      return;
+      tg.showAlert("❌ Bu sahifa Telegram orqali ochilishi shart");
+      throw new Error("No chatId");
     }
 
-    console.log("➡️ Backendga yuborilmoqda...");
-
-    const res = await send("mma", {
+    await send("mma", {
       chatId,
       FIO,
       Rasm,
@@ -63,16 +67,30 @@ const generateMma = async () => {
       Family,
     });
 
-    console.log("⬅️ Backend javobi:", res);
-
-    tg.showAlert("✅ Hujjat Telegramga yuborildi!");
+    // ✅ MUVAFFAQIYAT
+    tg.showAlert("✅ Hujjat Telegramga muvaffaqiyatli yuborildi!");
+    tg.MainButton.hide(); // 👈 YUBORILGANDAN KEYIN YO‘Q BO‘LADI
   } catch (err) {
-    console.error("❌ Frontend error:", err);
-    window.Telegram?.WebApp?.showAlert(
-      "❌ Hujjatni yuborishda xatolik yuz berdi"
-    );
+    let message = "❌ Noma’lum xatolik yuz berdi";
+  
+    if (!navigator.onLine) {
+      message = "📡 Internet aloqasi yo‘q.\nUlanishni tekshiring.";
+    } else if (err?.message?.includes("Network")) {
+      message = "📡 Server bilan aloqa uzildi.\nQayta urinib ko‘ring.";
+    } else {
+      message = "❌ Hujjatni yuborishda xatolik yuz berdi.";
+    }
+  
+    tg.showAlert(message);
+  
+    tg.MainButton.setText("📤 Qayta yuborish");
+    tg.MainButton.enable();
+  } finally {
+    setSending(false);
   }
 };
+
+
 
 
 
@@ -85,12 +103,17 @@ useEffect(() => {
   tg.expand();
 
   tg.MainButton.setText("📤 Hujjatni yuborish");
+  tg.MainButton.enable();
   tg.MainButton.show();
 
   tg.MainButton.onClick(generateMma);
 
-  return () => tg.MainButton.offClick(generateMma);
+  return () => {
+    tg.MainButton.offClick(generateMma);
+    tg.MainButton.hide();
+  };
 }, []);
+
 
   
   return (
@@ -143,8 +166,8 @@ useEffect(() => {
           <p><b>Tel:</b> {mbr.Tel_Q}</p>
         </details>
       ))}
-      <button className="MPEB" onClick={() => Navigator("/mmaf")}>O'zgartirish</button>
-      <button className="MPGB"  onClick={() => Navigator("/")}>📤 Bosh sahifaga qaytish</button>
+      <button type="button" className="MPEB" onClick={() => Navigator("/mmaf")}>O'zgartirish</button>
+      <button type="button" className="MPGB"  onClick={() => Navigator("/")}>Bosh sahifaga qaytish</button>
     </div>
   )
 }

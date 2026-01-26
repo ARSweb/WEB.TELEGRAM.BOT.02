@@ -1,5 +1,5 @@
 import axios from "axios";
 const api = axios.create({
-    baseURL: "https://lailah-pseudophilosophical-cloddishly.ngrok-free.dev"
+    baseURL: "https://webtelegrambot02server-production.up.railway.app"
 })
 export default api

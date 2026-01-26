@@ -7,7 +7,7 @@ const Dashboard = () => {
         <div className="MainLogo"></div>
       <nav className="DMN">
         <Link to="/mmaf" className="DNI" >Malumotnoma yaratish</Link>
-        <Link to="/azaf" className="DNI" >Ariza yaratish</Link>
+        <button type="button" className="DNI" >Ariza yaratish</button>
       </nav>
     </div>
   )
